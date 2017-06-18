@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import Create from './Create'
 
 const Hello = () => (
   <div>
@@ -27,6 +28,7 @@ class App extends Component {
       <Router>
       <div>
         <Route exact={true} path ='/' component={Hello} />
+        <Route exact={true} path='/createpage' component={Create}/>
         <Route path ="/hello" component={Home}/>
       </div>
       </Router>
