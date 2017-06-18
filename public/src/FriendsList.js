@@ -8,7 +8,8 @@ const FriendsList = ({friends, invite, done}) => (
       <h5 key={key}>
       {friend.name}
       </h5>
-      <button className="btn" onClick={invite}>Invite</button>
+      <button className="btn" onClick={() => {
+        invite(friend)}}>Invite</button>
       <br></br>
   </div>
 

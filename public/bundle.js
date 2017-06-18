@@ -25961,7 +25961,7 @@ var Create = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).call(this));
 
     _this.state = {
-
+      friends: [],
       display: false,
 
       dummyData: [{
@@ -25987,13 +25987,19 @@ var Create = function (_Component) {
     }
   }, {
     key: 'invite',
-    value: function invite() {
+    value: function invite(friend) {
       console.log('Clicked on friend');
+      console.log(friend);
+      this.state.friends.push(friend.name);
+      this.setState({
+        friends: this.state.friends
+      });
     }
   }, {
     key: 'done',
     value: function done() {
       this.setState({ display: false });
+      console.log(this.state.friends);
     }
   }, {
     key: 'render',
@@ -26107,7 +26113,9 @@ var FriendsList = function FriendsList(_ref) {
         ),
         _react2.default.createElement(
           'button',
-          { className: 'btn', onClick: invite },
+          { className: 'btn', onClick: function onClick() {
+              invite(friend);
+            } },
           'Invite'
         ),
         _react2.default.createElement('br', null)

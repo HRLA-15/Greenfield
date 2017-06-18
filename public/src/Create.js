@@ -6,7 +6,7 @@ class Create extends Component {
   constructor(){
     super()
     this.state = {
-
+      friends: [],
       display: false,
 
       dummyData: [{
@@ -28,12 +28,18 @@ class Create extends Component {
     console.log('clicked')
   }
 
-  invite(){
+  invite(friend){
     console.log('Clicked on friend')
+    console.log(friend)
+    this.state.friends.push(friend.name)
+    this.setState({
+      friends: this.state.friends
+    })
   }
 
   done(){
     this.setState({display: false})
+    console.log(this.state.friends)
   }
 
   render() {
