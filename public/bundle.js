@@ -25940,6 +25940,10 @@ var _reactDom = __webpack_require__(60);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _FriendsList = __webpack_require__(227);
+
+var _FriendsList2 = _interopRequireDefault(_FriendsList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25954,12 +25958,64 @@ var Create = function (_Component) {
   function Create() {
     _classCallCheck(this, Create);
 
-    return _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).call(this));
+    var _this = _possibleConstructorReturn(this, (Create.__proto__ || Object.getPrototypeOf(Create)).call(this));
+
+    _this.state = {
+
+      display: false,
+
+      dummyData: [{
+        name: "Jose"
+      }, {
+        name: "Han Solo"
+      }, {
+        name: "Jay is cool"
+      }]
+    };
+
+    _this.inviteFriends = _this.inviteFriends.bind(_this);
+    _this.invite = _this.invite.bind(_this);
+    _this.done = _this.done.bind(_this);
+    return _this;
   }
 
   _createClass(Create, [{
+    key: 'inviteFriends',
+    value: function inviteFriends() {
+      this.setState({ display: true });
+      console.log('clicked');
+    }
+  }, {
+    key: 'invite',
+    value: function invite() {
+      console.log('Clicked on friend');
+    }
+  }, {
+    key: 'done',
+    value: function done() {
+      this.setState({ display: false });
+    }
+  }, {
     key: 'render',
     value: function render() {
+
+      if (this.state.display === true) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Friends List'
+          ),
+          _react2.default.createElement(_FriendsList2.default, {
+            friends: this.state.dummyData,
+            invite: this.invite,
+            done: this.done
+          })
+        );
+      }
+
       return _react2.default.createElement(
         'div',
         null,
@@ -25979,13 +26035,13 @@ var Create = function (_Component) {
           'div',
           { id: 'bottomHalf' },
           _react2.default.createElement(
-            'p',
+            'span',
             null,
             'From:'
           ),
           _react2.default.createElement('input', { type: 'date' }),
           _react2.default.createElement(
-            'p',
+            'span',
             null,
             'To:'
           ),
@@ -25993,7 +26049,7 @@ var Create = function (_Component) {
           _react2.default.createElement('br', null),
           _react2.default.createElement(
             'button',
-            { className: 'btn' },
+            { className: 'btn', onClick: this.inviteFriends },
             'Invite Friends'
           ),
           _react2.default.createElement('br', null),
@@ -26011,6 +26067,61 @@ var Create = function (_Component) {
 }(_react.Component);
 
 exports.default = Create;
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(60);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FriendsList = function FriendsList(_ref) {
+  var friends = _ref.friends,
+      invite = _ref.invite,
+      done = _ref.done;
+  return _react2.default.createElement(
+    'div',
+    null,
+    friends.map(function (friend, key) {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h5',
+          { key: key },
+          friend.name
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'btn', onClick: invite },
+          'Invite'
+        ),
+        _react2.default.createElement('br', null)
+      );
+    }),
+    _react2.default.createElement(
+      'button',
+      { className: 'doneBtn', onClick: done },
+      'Finished'
+    )
+  );
+};
+
+exports.default = FriendsList;
 
 /***/ })
 /******/ ]);
